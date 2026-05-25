@@ -105,8 +105,53 @@
         "publisher": {
             "@type": "Organization",
             "name": "contraco",
-            "url": "https://contraco.net"
+            "url": "https://contraco.net",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://contraco.net/Logo_rectangle.svg",
+                "width": 400,
+                "height": 100
+            }
+        },
+        "dateModified": "2026-05-25"
+    }
+    </script>
+
+    <!-- Schema.org @graph: WebPage + Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://agentic.contraco.net/#webpage",
+          "url": "https://agentic.contraco.net/",
+          "name": "The Agentic Exposure Audit | contraco",
+          "description": "Securing Enterprise Architecture for the Autonomous Economy. We conduct surgical architectural audits for technical leadership to analyze API readiness against algorithmic arbitrage."
+        },
+        {
+          "@type": "Service",
+          "@id": "https://agentic.contraco.net/#service",
+          "name": "Agentic Exposure Audit",
+          "serviceType": "Strategic IT Architecture and Risk Governance",
+          "areaServed": "Global",
+          "provider": {
+            "@type": "Organization",
+            "@id": "https://contraco.net/#organization",
+            "name": "contraco",
+            "url": "https://contraco.net/",
+            "founder": {
+              "@type": "Person",
+              "@id": "https://contraco.net/#founder",
+              "name": "Frank Meltke",
+              "jobTitle": "CEO and Founder",
+              "sameAs": [
+                "https://www.wikidata.org/wiki/Q139680598"
+              ]
+            }
+          }
         }
+      ]
     }
     </script>
 
