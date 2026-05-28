@@ -431,6 +431,129 @@
         }
 
 
+        /* ===== SIGNAL SECTION ===== */
+        .signal-section {
+            padding: var(--section-padding);
+            background: var(--deep-charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signal-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(192,0,0,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .signal-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .signal-header .section-label { color: var(--primary-red); }
+
+        .signal-header .section-title { color: var(--warm-white); }
+
+        .signal-header .section-intro { color: rgba(248,246,243,0.6); }
+
+        .signal-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+        }
+
+        .signal-card {
+            background: rgba(248,246,243,0.04);
+            border: 1px solid rgba(248,246,243,0.08);
+            padding: 36px;
+            transition: var(--transition-fast);
+        }
+
+        .signal-card:hover {
+            background: rgba(248,246,243,0.07);
+            border-color: rgba(192,0,0,0.25);
+        }
+
+        .signal-card--primary {
+            background: rgba(192,0,0,0.08);
+            border-color: rgba(192,0,0,0.2);
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 0 32px;
+            align-items: start;
+        }
+
+        .signal-card--primary .signal-title { grid-column: 2; }
+        .signal-card--primary .signal-body { grid-column: 2; }
+        .signal-card--primary .signal-tag { grid-column: 3; align-self: start; margin-top: 0; }
+
+        .signal-num {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 600;
+            color: rgba(192,0,0,0.4);
+            line-height: 1;
+            grid-row: span 2;
+        }
+
+        .signal-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--warm-white);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .signal-body {
+            font-size: 0.92rem;
+            color: rgba(248,246,243,0.65);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .signal-tag {
+            display: inline-block;
+            background: rgba(192,0,0,0.2);
+            border: 1px solid rgba(192,0,0,0.35);
+            color: #ff8080;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+
+        .signal-footer {
+            position: relative;
+            z-index: 2;
+            margin-top: 24px;
+            text-align: right;
+            font-size: 0.8rem;
+            color: rgba(248,246,243,0.3);
+        }
+
+        @media (max-width: 900px) {
+            .signal-grid { grid-template-columns: 1fr; }
+            .signal-card--primary {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+            .signal-card--primary .signal-title,
+            .signal-card--primary .signal-body,
+            .signal-card--primary .signal-tag { grid-column: 1; }
+            .signal-num { font-size: 2rem; margin-bottom: 12px; }
+        }
+
         /* ===== NARRATIVE SECTION ===== */
         .narrative {
             padding: var(--section-padding);
@@ -1046,6 +1169,46 @@
                         <a href="#request-audit" class="btn-primary">Request an Audit</a>
                         <a href="#the-mandate" class="btn-ghost">Read the Mandate</a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SIGNAL SECTION ===== -->
+        <section class="signal-section">
+            <div class="container">
+                <div class="signal-header">
+                    <p class="section-label">Current Signal</p>
+                    <h2 class="section-title">What Is Shipping Right Now</h2>
+                    <p class="section-intro">These are not projections. Each item below went live at Google Marketing Live on May 20, 2026. Your architectural exposure assessment starts here.</p>
+                </div>
+                <div class="signal-grid">
+                    <div class="signal-card signal-card--primary">
+                        <div class="signal-num">01</div>
+                        <h3 class="signal-title">Six New Conversational Attributes — Live in Merchant Center Now</h3>
+                        <p class="signal-body">Google has launched a new attribute layer in the supplemental feed specifically designed for AI surfaces: FAQs, related items, popularity rank, document links, additional variants, and item group. These are not retrofitted from existing Shopping infrastructure. Google's own documentation marks them as designed specifically for AI Mode, Gemini, and Business Agent. Products without these attributes are structurally invisible to autonomous purchasing agents operating on conversational queries.</p>
+                        <div class="signal-tag">Directly maps to Diagnostic Question 1</div>
+                    </div>
+                    <div class="signal-card">
+                        <div class="signal-num">02</div>
+                        <h3 class="signal-title">Universal Commerce Protocol Expands to Hotel Booking and Food Delivery</h3>
+                        <p class="signal-body">The Universal Commerce Protocol, co-developed with Shopify, Etsy, Wayfair, Target, and Walmart, now covers hotel booking and local food delivery alongside retail. Amazon, Meta, Microsoft, Salesforce, and Stripe have joined as steering participants. The "Universal" designation is now operational across verticals. Any enterprise with a transactional API surface in these categories is exposed.</p>
+                        <div class="signal-tag">Directly maps to Diagnostic Question 2</div>
+                    </div>
+                    <div class="signal-card">
+                        <div class="signal-num">03</div>
+                        <h3 class="signal-title">Loyalty Authentication Wired Directly into Autonomous Checkout</h3>
+                        <p class="signal-body">Google account linking now surfaces merchant loyalty balances at the point of autonomous checkout inside the Universal Cart. A consumer's stored reward credit appears and is applied without human initiation. The psychological friction layer that once triggered purchase hesitation has been systematically removed at the infrastructure level. Risk governance models that assumed loyalty as a retention mechanism require immediate reassessment.</p>
+                        <div class="signal-tag">Directly maps to Diagnostic Question 2</div>
+                    </div>
+                    <div class="signal-card">
+                        <div class="signal-num">04</div>
+                        <h3 class="signal-title">Share of Voice Metric Launched in Merchant Center Across AI Surfaces</h3>
+                        <p class="signal-body">Google has introduced AI Performance Insights in Merchant Center, including a new Share of Voice metric that maps brand presence across AI-driven search results. The measurement paradigm has shifted from clicks to presence in answer engine outputs. Google's own framing: the funnel can widen deeper in. Departments currently holding no visibility into AI surface performance are now structurally accountable for outcomes they cannot measure.</p>
+                        <div class="signal-tag">Directly maps to Diagnostic Question 3</div>
+                    </div>
+                </div>
+                <div class="signal-footer">
+                    <p>Source: Google Marketing Live 2026, May 20, 2026. <a href="https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/" target="_blank" rel="noopener" style="color: var(--primary-red);">Google Official Blog &#8599;</a></p>
                 </div>
             </div>
         </section>
