@@ -434,97 +434,93 @@
         /* ===== SIGNAL SECTION ===== */
         .signal-section {
             padding: var(--section-padding);
-            background: var(--deep-charcoal);
+            background: var(--warm-white);
             position: relative;
-            overflow: hidden;
-        }
-
-        .signal-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at 20% 50%, rgba(192,0,0,0.07) 0%, transparent 60%);
-            pointer-events: none;
         }
 
         .signal-header {
-            position: relative;
-            z-index: 2;
             text-align: center;
             margin-bottom: 56px;
         }
 
         .signal-header .section-label { color: var(--primary-red); }
-
-        .signal-header .section-title { color: var(--warm-white); }
-
-        .signal-header .section-intro { color: rgba(248,246,243,0.6); }
+        .signal-header .section-title { color: var(--deep-charcoal); }
+        .signal-header .section-intro { color: var(--warm-gray-dark); }
 
         .signal-grid {
-            position: relative;
-            z-index: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3px;
+            gap: 24px;
         }
 
         .signal-card {
-            background: rgba(248,246,243,0.04);
-            border: 1px solid rgba(248,246,243,0.08);
+            background: white;
+            border: 1px solid var(--warm-gray-light);
+            border-top: 3px solid transparent;
             padding: 36px;
             transition: var(--transition-fast);
+            box-shadow: var(--shadow-small);
         }
 
         .signal-card:hover {
-            background: rgba(248,246,243,0.07);
-            border-color: rgba(192,0,0,0.25);
+            border-top-color: var(--primary-red);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
         }
 
         .signal-card--primary {
-            background: rgba(192,0,0,0.08);
-            border-color: rgba(192,0,0,0.2);
             grid-column: span 2;
+            background: var(--deep-charcoal);
+            border: none;
+            border-left: 5px solid var(--primary-red);
             display: grid;
             grid-template-columns: auto 1fr auto;
             gap: 0 32px;
             align-items: start;
         }
 
-        .signal-card--primary .signal-title { grid-column: 2; }
-        .signal-card--primary .signal-body { grid-column: 2; }
+        .signal-card--primary:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .signal-card--primary .signal-title { grid-column: 2; color: var(--warm-white); }
+        .signal-card--primary .signal-body { grid-column: 2; color: rgba(248,246,243,0.7); }
         .signal-card--primary .signal-tag { grid-column: 3; align-self: start; margin-top: 0; }
 
         .signal-num {
             font-family: var(--font-serif);
             font-size: 3rem;
             font-weight: 600;
-            color: rgba(192,0,0,0.4);
+            color: var(--warm-gray-light);
             line-height: 1;
             grid-row: span 2;
         }
 
+        .signal-card--primary .signal-num { color: rgba(192,0,0,0.35); }
+
         .signal-title {
             font-family: var(--font-serif);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: var(--warm-white);
+            color: var(--deep-charcoal);
             margin-bottom: 14px;
             line-height: 1.3;
         }
 
         .signal-body {
             font-size: 0.92rem;
-            color: rgba(248,246,243,0.65);
+            color: var(--warm-gray-dark);
             line-height: 1.8;
             margin-bottom: 20px;
         }
 
         .signal-tag {
             display: inline-block;
-            background: rgba(192,0,0,0.2);
-            border: 1px solid rgba(192,0,0,0.35);
-            color: #ff8080;
-            font-size: 0.72rem;
+            background: rgba(192,0,0,0.08);
+            border: 1px solid rgba(192,0,0,0.2);
+            color: var(--primary-red);
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -533,13 +529,17 @@
             white-space: nowrap;
         }
 
+        .signal-card--primary .signal-tag {
+            background: rgba(192,0,0,0.2);
+            border-color: rgba(192,0,0,0.35);
+            color: #ff8080;
+        }
+
         .signal-footer {
-            position: relative;
-            z-index: 2;
-            margin-top: 24px;
-            text-align: right;
+            margin-top: 20px;
+            text-align: left;
             font-size: 0.8rem;
-            color: rgba(248,246,243,0.3);
+            color: var(--warm-gray-medium);
         }
 
         @media (max-width: 900px) {
@@ -558,6 +558,7 @@
         .narrative {
             padding: var(--section-padding);
             background: white;
+            border-top: 1px solid var(--warm-gray-light);
         }
 
         .narrative-inner {
@@ -1184,7 +1185,7 @@
                 <div class="signal-grid">
                     <div class="signal-card signal-card--primary">
                         <div class="signal-num">01</div>
-                        <h3 class="signal-title">Six New Conversational Attributes — Live in Merchant Center Now</h3>
+                        <h3 class="signal-title">Six New Conversational Attributes: Live in Merchant Center Now</h3>
                         <p class="signal-body">Google has launched a new attribute layer in the supplemental feed specifically designed for AI surfaces: FAQs, related items, popularity rank, document links, additional variants, and item group. These are not retrofitted from existing Shopping infrastructure. Google's own documentation marks them as designed specifically for AI Mode, Gemini, and Business Agent. Products without these attributes are structurally invisible to autonomous purchasing agents operating on conversational queries.</p>
                         <div class="signal-tag">Directly maps to Diagnostic Question 1</div>
                     </div>
