@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-868WGCC45D', {
+            page_title: 'How Autonomous Agents Execute Payments - contraco',
+            page_location: window.location.href
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Autonomous Agents Execute Payments | Frank Meltke | contraco</title>
+
+    <link rel="canonical" href="https://agentic.contraco.net/how-agents-pay.html">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- hreflang -->
+    <link rel="alternate" href="https://contraco.com/" hreflang="x-default" />
+    <link rel="alternate" href="https://agentic.contraco.net/how-agents-pay.html" hreflang="en" />
+
+    <!-- Fonts -->
+    <style>
+@font-face { font-family: 'Crimson Text'; font-style: normal; font-weight: 400; src: url('/fonts/crimson-text-v21-latin-regular.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Text'; font-style: normal; font-weight: 600; src: url('/fonts/crimson-text-v21-latin-600.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Text'; font-style: italic; font-weight: 400; src: url('/fonts/crimson-text-v21-latin-italic.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 300; src: url('/fonts/inter-v20-latin-300.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; src: url('/fonts/inter-v20-latin-regular.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; src: url('/fonts/inter-v20-latin-500.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; src: url('/fonts/inter-v20-latin-600.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; src: url('/fonts/inter-v20-latin-700.woff2') format('woff2'); font-display: swap; }
+</style>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://contraco.net/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="https://contraco.net/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://contraco.net/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://contraco.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://contraco.net/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://contraco.net/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://contraco.net/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://contraco.net/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://contraco.net/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://contraco.net/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://contraco.net/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://contraco.net/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://contraco.net/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://contraco.net/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" href="https://contraco.net/apple-touch-icon.png">
+    <link rel="manifest" href="https://contraco.net/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#C00000">
+    <meta name="msapplication-TileImage" content="https://contraco.net/ms-icon-144x144.png">
+    <meta name="theme-color" content="#C00000">
+
+    <!-- SEO Meta -->
+    <meta name="description" content="By Frank Meltke of contraco. How do AI agents actually execute payments? The answer requires rebuilding PKI for commercial intent. A forensic analysis of programmable wallets, KYA, and the ACP protocol.">
+    <meta name="keywords" content="agentic commerce payment infrastructure, how AI agents pay, programmable wallet, Know Your Agent KYA, Agentic Commerce Protocol ACP, agent-bound token, autonomous payment execution">
+    <meta name="author" content="contraco">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://agentic.contraco.net/how-agents-pay.html">
+    <meta property="og:title" content="How Autonomous Agents Execute Payments | contraco">
+    <meta property="og:description" content="The legal framework for agentic transactions already exists. The financial infrastructure does not. Frank Meltke of contraco examines the payment architecture gap and the KYA shift.">
+    <meta property="og:logo" content="https://contraco.net/Logo_rectangle.svg">
+    <meta property="og:image" content="https://contraco.net/contraco_4K.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="contraco - How Autonomous Agents Execute Payments">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How Autonomous Agents Execute Payments | contraco">
+    <meta name="twitter:description" content="The legal framework for agentic transactions already exists. The financial infrastructure does not. A forensic analysis by Frank Meltke.">
+    <meta name="twitter:image" content="https://contraco.net/contraco_4K.png">
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How Autonomous Agents Execute Payments: The Architecture Behind Machine-Speed Commerce",
+        "description": "The legal framework for agentic transactions already exists. The financial infrastructure does not. A forensic analysis of programmable wallets, algorithmic consent, the KYA shift, and the Agentic Commerce Protocol.",
+        "url": "https://agentic.contraco.net/how-agents-pay.html",
+        "datePublished": "2026-06-04",
+        "dateModified": "2026-06-04",
+        "author": { "@id": "https://meltke.com/#person" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "contraco",
+            "url": "https://contraco.net",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://contraco.net/Logo_rectangle.svg",
+                "width": 400,
+                "height": 100
+            }
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Agentic Exposure Audit",
+            "url": "https://agentic.contraco.net/"
+        }
+    }
+    </script>
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "contraco",
+                "item": "https://contraco.net/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "The Agentic Exposure Audit",
+                "item": "https://agentic.contraco.net/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How Autonomous Agents Execute Payments",
+                "item": "https://agentic.contraco.net/how-agents-pay.html"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-red: #C00000;
+            --deep-charcoal: #404040;
+            --warm-white: #F8F6F3;
+            --warm-gray-light: #E5E2DD;
+            --warm-gray-medium: #A8A5A0;
+            --warm-gray-dark: #6B6B6B;
+            --container-max: 1200px;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --section-padding: 100px 0;
+            --transition-fast: all 0.3s ease;
+            --shadow-small: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow-medium: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-large: 0 15px 50px rgba(0,0,0,0.10);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--deep-charcoal);
+            background-color: var(--warm-white);
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 246, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 12px 0;
+            transition: var(--transition-fast);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 58px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img { transform: scale(1.05); }
+
+        .logo-fallback {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            letter-spacing: -0.02em;
+            font-family: var(--font-serif);
+            display: none;
+        }
+
+        .logo.logo-failed img { display: none; }
+        .logo.logo-failed .logo-fallback { display: block; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--deep-charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover { color: var(--primary-red); }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--primary-red);
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: #D63E20;
+            transform: translateY(-1px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--deep-charcoal);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(160deg, var(--deep-charcoal) 0%, #2a2a2a 60%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(192, 0, 0, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(192, 0, 0, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(192,0,0,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(192,0,0,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(192, 0, 0, 0.15);
+            border: 1px solid rgba(192, 0, 0, 0.3);
+            color: #ff6b6b;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 3px;
+            margin-bottom: 36px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+            font-weight: 600;
+            line-height: 1.1;
+            color: #F8F6F3;
+            margin-bottom: 12px;
+        }
+
+        .hero-title-sub {
+            font-family: var(--font-serif);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--warm-gray-medium);
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .hero-body {
+            font-size: 1.15rem;
+            color: rgba(248, 246, 243, 0.75);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 720px;
+        }
+
+        .hero-body + .hero-body { margin-bottom: 52px; }
+
+        .hero-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .hero-meta-item {
+            font-size: 0.82rem;
+            color: rgba(248,246,243,0.45);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-meta-item strong {
+            color: rgba(248,246,243,0.7);
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(192,0,0,0.3);
+        }
+
+        .btn-primary:hover {
+            background: #D63E20;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(192,0,0,0.4);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: rgba(248, 246, 243, 0.8);
+            padding: 16px 36px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid rgba(248,246,243,0.25);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(248,246,243,0.6);
+            color: #F8F6F3;
+            background: rgba(248,246,243,0.06);
+        }
+
+        /* ===== ARTICLE BODY ===== */
+        .article-body {
+            padding: var(--section-padding);
+            background: white;
+        }
+
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .article-prose h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            line-height: 1.2;
+            margin-top: 60px;
+            margin-bottom: 24px;
+        }
+
+        .article-prose h2:first-child { margin-top: 0; }
+
+        .article-prose h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-top: 40px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .article-prose p {
+            font-size: 1.05rem;
+            color: var(--warm-gray-dark);
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .article-prose .lead {
+            font-size: 1.2rem;
+            color: var(--deep-charcoal);
+            line-height: 1.75;
+            margin-bottom: 36px;
+            font-family: var(--font-serif);
+        }
+
+        .article-prose .callout {
+            border-left: 3px solid var(--primary-red);
+            padding: 22px 28px;
+            background: var(--warm-white);
+            margin: 36px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .article-prose .callout p {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--deep-charcoal);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ===== STEP BLOCKS ===== */
+        .step-block {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 0 24px;
+            margin: 32px 0;
+            background: var(--warm-white);
+            border: 1px solid var(--warm-gray-light);
+            border-left: 4px solid var(--primary-red);
+            padding: 28px 28px 28px 0;
+        }
+
+        .step-num {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            line-height: 1;
+            text-align: center;
+            padding-top: 4px;
+        }
+
+        .step-content h4 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 0.97rem;
+            color: var(--warm-gray-dark);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* ===== COMPARISON TABLE ===== */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.93rem;
+        }
+
+        .compare-table th {
+            background: var(--deep-charcoal);
+            color: var(--warm-white);
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .compare-table th:first-child { width: 28%; }
+
+        .compare-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--warm-gray-light);
+            color: var(--warm-gray-dark);
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .compare-table tr:last-child td { border-bottom: none; }
+
+        .compare-table tr:nth-child(even) td { background: var(--warm-white); }
+
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            font-size: 0.88rem;
+        }
+
+        .tag-new {
+            display: inline-block;
+            background: rgba(192,0,0,0.1);
+            border: 1px solid rgba(192,0,0,0.25);
+            color: var(--primary-red);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 2px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .article-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-block {
+            background: var(--warm-white);
+            border: 1px solid var(--warm-gray-light);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-block h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-block ul {
+            list-style: none;
+        }
+
+        .sidebar-block ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--warm-gray-light);
+            font-size: 0.88rem;
+        }
+
+        .sidebar-block ul li:last-child { border-bottom: none; }
+
+        .sidebar-block ul li a {
+            color: var(--warm-gray-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .sidebar-block ul li a:hover { color: var(--primary-red); }
+
+        .sidebar-cta {
+            background: var(--deep-charcoal);
+            padding: 28px;
+        }
+
+        .sidebar-cta h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--warm-white);
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .sidebar-cta p {
+            font-size: 0.88rem;
+            color: rgba(248,246,243,0.6);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-cta a {
+            display: block;
+            background: var(--primary-red);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .sidebar-cta a:hover {
+            background: #D63E20;
+            transform: translateY(-1px);
+        }
+
+        /* ===== RELATED SECTION ===== */
+        .related {
+            padding: var(--section-padding);
+            background: var(--warm-white);
+            border-top: 1px solid var(--warm-gray-light);
+        }
+
+        .related-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+        }
+
+        .related-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 48px;
+            line-height: 1.2;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .related-card {
+            background: white;
+            border: 1px solid var(--warm-gray-light);
+            border-top: 3px solid transparent;
+            padding: 32px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition-fast);
+        }
+
+        .related-card:hover {
+            border-top-color: var(--primary-red);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .related-card-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+        }
+
+        .related-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .related-card p {
+            font-size: 0.9rem;
+            color: var(--warm-gray-dark);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1a1a1a;
+            color: rgba(248,246,243,0.6);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: rgba(248,246,243,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--primary-red); }
+
+        .footer h4 {
+            color: var(--warm-white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .footer p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(248,246,243,0.08);
+            padding-top: 24px;
+            font-size: 0.82rem;
+        }
+
+        .footer-privacy-links {
+            margin-bottom: 10px;
+        }
+
+        .footer-privacy-links a {
+            color: rgba(248,246,243,0.4);
+            text-decoration: none;
+            margin-right: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-privacy-links a:hover { color: var(--primary-red); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            .nav-container { padding: 0 24px; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--warm-white);
+                flex-direction: column;
+                padding: 20px 24px;
+                box-shadow: var(--shadow-medium);
+                gap: 16px;
+            }
+            .nav-menu.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero { padding: 120px 0 70px; }
+            .article-layout { grid-template-columns: 1fr; gap: 40px; }
+            .article-sidebar { position: static; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .step-block { grid-template-columns: 44px 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="https://contraco.net/" class="logo" id="site-logo">
+                <img src="https://contraco.net/Logo_rectangle.svg" alt="contraco"
+                     onerror="this.parentElement.classList.add('logo-failed');">
+                <span class="logo-fallback">contraco</span>
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="https://contraco.net/#services" class="nav-link">Services</a></li>
+                <li><a href="https://contraco.net/#methodology" class="nav-link">Methodology</a></li>
+                <li><a href="https://contraco.net/insights.html" class="nav-link">Insights</a></li>
+                <li><a href="https://contraco.net/about.html" class="nav-link">About</a></li>
+                <li><a href="https://agentic.contraco.net/#request-audit" class="nav-cta">Request an Audit</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="hero-grid"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-eyebrow">Payment Infrastructure Analysis</div>
+                    <h1 class="hero-title">How Autonomous Agents Execute Payments</h1>
+                    <p class="hero-title-sub">The Architecture Behind Machine-Speed Commerce</p>
+                    <div class="hero-meta">
+                        <span class="hero-meta-item"><strong>Author:</strong> Frank Meltke, contraco</span>
+                        <span class="hero-meta-item"><strong>Published:</strong> June 2026</span>
+                        <span class="hero-meta-item"><strong>Reading time:</strong> 12 min</span>
+                    </div>
+                    <p class="hero-body">The legal framework for autonomous commercial transactions is largely settled. Electronic agents operating within programmed parameters can issue declarations of intent that legally bind their principals. The commercial infrastructure required to execute those transactions is not settled at all.</p>
+                    <p class="hero-body">This paper examines the precise architectural gap between legal readiness and payment infrastructure readiness, traces the evolution from traditional PSP friction models toward programmable wallets and cryptographic identity, and identifies where enterprise liability actually sits in this new order.</p>
+                    <div class="hero-actions">
+                        <a href="#the-gap" class="btn-primary">Read the Analysis</a>
+                        <a href="https://agentic.contraco.net/" class="btn-ghost">The Agentic Exposure Audit</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ARTICLE BODY ===== -->
+        <section class="article-body" id="the-gap">
+            <div class="container">
+                <div class="article-layout">
+
+                    <article class="article-prose">
+
+                        <p class="lead">Two agents agree on a transaction. One represents a buyer. One represents a merchant. The price is accepted, the product is confirmed, the delivery parameters are set. Now: how does the money move? This question, deceptively simple, exposes a structural fault line running through every major payment system currently operating at scale in the West.</p>
+
+                        <h2>The Breakdown Point: Legacy Rails Were Designed for Human Friction</h2>
+
+                        <p>Traditional payment infrastructure was not designed to be efficient. It was designed to be interruptive. Every friction mechanism layered into the modern checkout flow serves a single purpose: to insert a human decision point between intent and execution. 3D Secure challenges, one-time passwords delivered via SMS, biometric authentication on mobile devices. These are not bugs in the payment system. They are the payment system's primary risk control mechanism.</p>
+
+                        <p>An autonomous agent cannot receive a text message. It cannot complete a CAPTCHA. It cannot present a face to a camera. When an AI agent attempts to execute a transaction through legacy payment rails, it fails not because of insufficient authorization but because the entire liability and fraud detection architecture assumes the presence of a responding human.</p>
+
+                        <div class="callout">
+                            <p>Legacy payment rails were not designed to be efficient. They were designed to be interruptive. Every friction mechanism exists to insert a human decision point between intent and execution. Autonomous agents eliminate every single one.</p>
+                        </div>
+
+                        <p>This creates the central problem of agentic commerce payment architecture: the legal framework has outpaced the financial infrastructure. Courts and regulators have increasingly recognized that electronic agents acting within programmed parameters can validly commit their principals to contracts. The PSP layer has not caught up. The deterministic execution layer has no standard mechanism for verifying the agent's authorization without demanding human confirmation.</p>
+
+                        <h2>The Separation of Negotiation and Execution</h2>
+
+                        <p>The first architectural principle required to bridge this gap is a strict domain separation. Agentic payment flows must separate the probabilistic negotiation domain from the deterministic execution domain. These are fundamentally incompatible processes, and conflating them is the source of most proposed solutions that fail in practice.</p>
+
+                        <p>The negotiation phase, where agents communicate, evaluate parameters, and reach agreement on price, delivery, and terms, is inherently probabilistic and language-driven. Large language models are excellent at this. They handle ambiguity, context, and multi-variable optimization naturally. Allowing an LLM to have direct, unconstrained access to a credit card or bank account would represent a catastrophic enterprise liability exposure. The language model that can reason about price can also hallucinate a requirement, misinterpret a constraint, or be manipulated by adversarial input in the merchant's data feed.</p>
+
+                        <p>The execution phase must be entirely deterministic. No ambiguity. No inference. No reasoning. The payment instruction either precisely matches a pre-authorized set of parameters or it does not execute. This separation is not optional. It is the foundational security principle of every viable agentic payment architecture.</p>
+
+                        <h2>Algorithmic Consent: The Programmable Wallet</h2>
+
+                        <p>Once the domain separation is established, the mechanism for bridging the two domains becomes clear: the programmable wallet with pre-authorized financial perimeters. Before any agent is deployed into a commercial context, the human or corporate principal defines the exact boundaries within which that agent is authorized to commit funds.</p>
+
+                        <p>These boundaries are not suggestions. They are cryptographically enforced constraints baked into the wallet's operating parameters at provisioning time. A well-structured programmable wallet declaration might encode: authorized to spend up to EUR 500 per transaction, strictly with verified B2B software vendors listed on an approved-counterparty register, with a maximum frequency of three transactions per 24-hour window, expiring in 30 days.</p>
+
+                        <p>When the agent reaches agreement in the negotiation phase, it does not then ask the human for approval. The human already gave approval. They gave it at wallet provisioning time, in the form of these cryptographic parameters. This is algorithmic consent. The prior, deliberate act of setting the perimeters constitutes the authorization for all transactions that fall within them.</p>
+
+                        <div class="callout">
+                            <p>The human gave approval at wallet provisioning time. The prior, deliberate act of setting the perimeters constitutes the authorization for all transactions that fall within them. This is the mechanism by which 3D Secure is bypassed without bypassing authorization.</p>
+                        </div>
+
+                        <h2>The Critical Inversion: The PSP Is Not the Problem</h2>
+
+                        <p>Here is where the conventional framing of this problem goes wrong. Most discussions position the PSP as the primary obstacle to agentic payment execution. The logic runs: PSPs enforce human friction, agents cannot satisfy human friction, therefore PSPs must adapt. This framing is structurally misleading.</p>
+
+                        <p>If the programmable wallet sits at the endpoint, provisioned and controlled by the buyer principal, the PSP is reduced to a deterministic pipe. Its role is to verify that a cryptographically valid token precisely matches the parameters of a known, pre-authorized wallet and then execute the settlement. This is not a governance function. It is an arithmetic function. The PSP becomes, in this architecture, the smallest problem.</p>
+
+                        <p>The genuine governance burden has shifted entirely upstream, to the enterprise or consumer architecture that provisions the wallet and defines the algorithmic consent parameters. If an agent is manipulated by adversarial data inputs and subsequently generates a cryptographically valid token to authorize a commercially disastrous purchase, the PSP executes it without hesitation. The transaction is technically flawless. The enterprise holds the liability. The PSP was simply doing its job.</p>
+
+                        <p>This inversion is the most consequential and least understood aspect of agentic payment architecture. An enterprise that focuses its risk governance on PSP selection and payment rail compliance while neglecting wallet provisioning discipline and agent parameter governance is building its defense at the wrong perimeter entirely.</p>
+
+                        <h2>From KYC to KYA: Know Your Agent</h2>
+
+                        <p>The broader payment industry is currently undergoing the most significant identity paradigm shift since the introduction of digital authentication. The transition is from Know Your Customer to Know Your Agent.</p>
+
+                        <p>Traditional KYC establishes that a human individual is who they claim to be and that their funds are legitimately sourced. This framework is well-developed, heavily regulated, and entirely inadequate for agentic transactions. When a buyer agent presents itself at a merchant's API endpoint, there is no human to verify. The question is not whether the person is legitimate. The question is whether the agent has valid, cryptographically verifiable authorization from a legitimate principal to execute this specific category of transaction.</p>
+
+                        <table class="compare-table">
+                            <thead>
+                                <tr>
+                                    <th>Dimension</th>
+                                    <th>KYC (Know Your Customer)</th>
+                                    <th>KYA (Know Your Agent) <span class="tag-new">Emerging</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Identity Subject</td>
+                                    <td>Human individual or legal entity</td>
+                                    <td>Autonomous software agent</td>
+                                </tr>
+                                <tr>
+                                    <td>Verification Method</td>
+                                    <td>Document verification, biometrics, address proof</td>
+                                    <td>Cryptographic credential from recognized issuing authority</td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization Source</td>
+                                    <td>Real-time human confirmation (2FA, biometric)</td>
+                                    <td>Pre-authorized algorithmic consent parameters in wallet</td>
+                                </tr>
+                                <tr>
+                                    <td>Fraud Detection</td>
+                                    <td>Behavioral anomaly vs. historical human pattern</td>
+                                    <td>Parameter boundary enforcement at execution time</td>
+                                </tr>
+                                <tr>
+                                    <td>Liability Location</td>
+                                    <td>PSP absorbs significant fraud liability via chargeback</td>
+                                    <td>Provisioning enterprise holds liability for parameter design</td>
+                                </tr>
+                                <tr>
+                                    <td>Regulatory Maturity</td>
+                                    <td>Fully codified globally</td>
+                                    <td>Emerging; EBA, CCD II creating regulatory pressure</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Western infrastructure providers are actively codifying the KYA framework. If an agent cannot present a cryptographically signed credential from a recognized financial authority, it is treated as an untrusted bot at the transaction edge and the payment is declined. The shift is from authenticating the person to authenticating the agent's mandate.</p>
+
+                        <h2>The SSL Certificate Analogy: PKI for Commercial Intent</h2>
+
+                        <p>The most precise structural analogy for what is being built is Public Key Infrastructure applied to commercial intent. The programmable wallet is not merely a spending mechanism. It is a certificate. The PSP or bank issuing it is not merely a payment processor. It is a Certificate Authority for money.</p>
+
+                        <p>Consider how this maps to the familiar TLS architecture:</p>
+
+                        <div class="step-block">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>The Certificate Authority: The Issuing Bank or PSP</h4>
+                                <p>Just as Verisign or Let's Encrypt issues an SSL certificate after verifying domain ownership, a financial institution verifies the human principal through standard KYC procedures and then issues the programmable wallet. This issuance act creates the root of trust. The institution stands behind the authenticity of the wallet and absorbs liability if the issued credential is cryptographically compromised.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>The Certificate: The Agent-Bound Token</h4>
+                                <p>An SSL certificate binds a domain to a public key. The agent-bound token, sometimes called a Verifiable Credential in W3C standards terminology, binds the principal's payment credential to the specific agent's public key. Critically, this binding also hardcodes the algorithmic consent parameters: authorized category, maximum value, valid counterparties, expiry timestamp. These parameters cannot be modified by the agent. They are the certificate's subject constraints.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>The Handshake: Agent-to-Agent Authentication</h4>
+                                <p>When the buyer agent communicates its intent to the merchant agent, it does not send plain text authorization. It signs the transaction payload using its private key and presents its credential. The merchant agent verifies the certificate against the issuing authority's public key, confirms that the requested transaction falls within the certificate's embedded constraints, and only then passes the signed payment authorization to its PSP for execution. Acceptance of a token that violates the certificate's parameters shifts liability to the accepting merchant.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h4>The Execution Layer: Deterministic Settlement</h4>
+                                <p>The PSP receives the merchant-validated, cryptographically signed payment authorization. It performs no further judgment about the transaction's commercial wisdom. It validates the math: does this signature match the issued wallet? Does the transaction value fall within authorized parameters? If yes, settlement executes via the most efficient available rail, whether ACH, SEPA Instant, or an account-to-account protocol like Wero in European markets.</p>
+                            </div>
+                        </div>
+
+                        <h2>The Open Protocol Requirement</h2>
+
+                        <p>The SSL analogy breaks down in one critical respect. TLS operates across a global, interoperable infrastructure because the protocol is an open standard. Agentic payment infrastructure, to function across the fragmented Western commercial landscape, requires the same property. A buyer agent operating on one platform must be able to authenticate and transact with a merchant agent operating on an entirely different platform, routed through any number of PSPs.</p>
+
+                        <p>This is precisely why the emergence of the Agentic Commerce Protocol (ACP), launched by Stripe and OpenAI under an Apache 2.0 open-source license in May 2026, represents a structurally significant development rather than merely another payments product announcement. ACP does not lock the transaction to any specific payment rail. It standardizes the language agents use to discover products, negotiate parameters, and exchange the credential handshake. Once the handshake is complete, any compatible PSP can receive the resulting validated token and process settlement through whatever execution layer is most efficient for that market.</p>
+
+                        <p>In European contexts, this means a buyer agent executing ACP negotiation can route the payment execution through SEPA Instant or Wero's account-to-account settlement layer, entirely bypassing legacy card network infrastructure. The negotiation protocol is open. The execution rail is substitutable. This separation of protocol from pipe is the architectural condition required for genuine market interoperability.</p>
+
+                        <h2>Where Enterprise Liability Actually Sits</h2>
+
+                        <p>The full architectural picture clarifies a governance mandate that most enterprise risk frameworks have not yet absorbed. The liability location in agentic commerce has fundamentally shifted from transaction execution to agent provisioning.</p>
+
+                        <p>Under the legacy payment model, a meaningful portion of fraud liability rested with the PSP. They held behavioral data, operated fraud detection systems, and absorbed chargebacks. Under the programmable wallet model, the PSP executes valid math. The enterprise that provisioned the wallet with parameters that permitted the exploited transaction holds the exposure.</p>
+
+                        <p>This means the critical governance questions are not about payment rail selection. They are about wallet provisioning discipline: how precisely are the agent's spending boundaries defined, how are those parameters audited over time, what mechanism exists to revoke authorization if the agent's environment is compromised, and which organizational function owns that provisioning process and its associated liability.</p>
+
+                        <p>The <a href="https://agentic.contraco.net/" style="color: var(--primary-red); font-weight: 500;">Agentic Exposure Audit</a> developed by contraco specifically addresses this provisioning governance gap. The three diagnostic questions that constitute the audit entry requirement directly probe the enterprise's current maturity in each dimension: machine-legible data readiness, agent identity verification capability, and liability ownership for autonomous transactions. These are not screening criteria. They are the first instrument for mapping where the governance exposure actually sits.</p>
+
+                        <div class="callout">
+                            <p>The enterprise that provisioned the wallet with parameters that permitted the exploited transaction holds the exposure. The critical governance questions are not about payment rail selection. They are about wallet provisioning discipline.</p>
+                        </div>
+
+                        <h2>The Regulatory Pressure Accelerating This Shift</h2>
+
+                        <p>The transition from KYC to KYA is not happening in a regulatory vacuum. Two European regulatory frameworks are creating specific pressure on the consent gap in agentic transactions. The EBA guidelines updated in January 2026 and the EU Consumer Credit Directive CCD II both contain provisions that, while not yet explicitly addressing AI agent transactions, create unresolved liability exposure when applied to them.</p>
+
+                        <p>When an autonomous agent selects a buy-now-pay-later option, applies stored loyalty credit, or executes a subscription renewal on behalf of a consumer, the legal requirement for informed consent under these frameworks is not clearly satisfied by prior wallet provisioning alone. The liability sits in a regulatory gap that no enterprise architecture currently bridges by design. It is bridged, when it is bridged at all, by contractual language in terms of service that has never been tested in the specific context of agent-executed financial transactions.</p>
+
+                        <p>This gap will close. The direction of travel in European financial regulation is unambiguously toward explicit frameworks for algorithmic consent and agent-executed financial commitments. Enterprises that treat wallet provisioning governance as a technical footnote rather than a primary compliance discipline are accumulating regulatory exposure that will become material when those frameworks arrive.</p>
+
+                    </article>
+
+                    <!-- ===== SIDEBAR ===== -->
+                    <aside class="article-sidebar">
+
+                        <div class="sidebar-block">
+                            <h4>Contents</h4>
+                            <ul>
+                                <li><a href="#the-gap">The Legacy Rail Problem</a></li>
+                                <li><a href="#the-gap">Negotiation vs. Execution</a></li>
+                                <li><a href="#the-gap">Algorithmic Consent</a></li>
+                                <li><a href="#the-gap">The PSP Inversion</a></li>
+                                <li><a href="#the-gap">KYC to KYA</a></li>
+                                <li><a href="#the-gap">PKI for Commerce</a></li>
+                                <li><a href="#the-gap">The Open Protocol</a></li>
+                                <li><a href="#the-gap">Where Liability Sits</a></li>
+                                <li><a href="#the-gap">Regulatory Pressure</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-block">
+                            <h4>Related Analysis</h4>
+                            <ul>
+                                <li><a href="https://agentic.contraco.net/west-vs-east.html">Alipay vs. Western Fragmentation: Why 300 Million Transactions Happened There First</a></li>
+                                <li><a href="https://agentic.contraco.net/value-capture.html">Who Captures Value When the Pipe Is Free</a></li>
+                                <li><a href="https://contraco.net/framework-agentic-commerce.html">The Level 0 to 5 Agentic Commerce Framework</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-cta">
+                            <h4>Assess Your Exposure</h4>
+                            <p>The three diagnostic questions that establish your wallet provisioning governance baseline.</p>
+                            <a href="https://agentic.contraco.net/#request-audit">Request an Audit &#8594;</a>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RELATED ===== -->
+        <section class="related">
+            <div class="container">
+                <p class="related-label">Continue Reading</p>
+                <h2 class="related-heading">Further Analysis from Frank Meltke</h2>
+                <div class="related-grid">
+                    <a href="https://agentic.contraco.net/west-vs-east.html" class="related-card">
+                        <p class="related-card-label">Market Structure</p>
+                        <h3>Alipay vs. Western Fragmentation</h3>
+                        <p>Why 300 million agentic transactions happened in Asia first, and what the Frankfurt U4 scenario reveals about the Western infrastructure gap.</p>
+                    </a>
+                    <a href="https://agentic.contraco.net/value-capture.html" class="related-card">
+                        <p class="related-card-label">Economic Architecture</p>
+                        <h3>Who Captures Value When the Pipe Is Free</h3>
+                        <p>When the payment execution layer is commoditized by open protocols, where does the commercial margin go? A forensic analysis of the four value layers.</p>
+                    </a>
+                    <a href="https://agentic.contraco.net/" class="related-card">
+                        <p class="related-card-label">Enterprise Service</p>
+                        <h3>The Agentic Exposure Audit</h3>
+                        <p>contraco executes surgical architectural audits that map your API readiness, transactional governance gaps, and wallet provisioning exposure.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-links">
+                        <a href="https://contraco.net/">Home</a>
+                        <a href="https://contraco.net/about.html">About Us</a>
+                        <a href="https://contraco.net/#services">Services</a>
+                        <a href="https://contraco.net/#methodology">Methodology</a>
+                        <a href="https://contraco.net/insights.html">Insights</a>
+                        <a href="https://contraco.net/contact.html">Contact</a>
+                    </div>
+                    <h4>contraco USA</h4>
+                    <p>Premium transformation consulting combining strategic clarity, technological intelligence, and psychological depth.</p>
+                    <p><strong>Email:</strong> agentic@contraco.net</p>
+                    <p><strong>Phone:</strong> +1 (312) 940-0326</p>
+                </div>
+                <div>
+                    <h4>Company Information</h4>
+                    <p><strong>contraco</strong></p>
+                    <p>1209 10th Ln.</p>
+                    <p>Ava, MO 65608</p>
+                    <p>United States</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-privacy-links">
+                    <a href="https://contraco.net/privacy-statement.html">Privacy Statement</a>
+                    &bull; <a href="https://www.linkedin.com/company/contraco" rel="noopener">LinkedIn</a>
+                    &bull; <a href="https://www.linkedin.com/in/frankmeltke" rel="noopener">Frank Meltke on LinkedIn</a>
+                    &bull; <a href="https://meltke.com" rel="noopener">Frank Meltke</a>
+                </div>
+                <p>&copy; 2026 contraco. All rights reserved.</p>
+                <p style="font-size: 0.8rem;"><a href="https://contraco.net/resonance-method.html" style="color: inherit; text-decoration: none;">Resonance Method&#8482;</a> is a trademark of contraco</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        (function() {
+            const logo = document.getElementById('site-logo');
+            const img = logo.querySelector('img');
+            let retryCount = 0;
+            const maxRetries = 2;
+            function retryLoadLogo() {
+                retryCount++;
+                if (retryCount <= maxRetries) {
+                    img.src = img.src + '?retry=' + retryCount;
+                } else {
+                    logo.classList.add('logo-failed');
+                }
+            }
+            img.addEventListener('error', retryLoadLogo);
+            img.addEventListener('load', function() { logo.classList.remove('logo-failed'); });
+        })();
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+<script>
+  window.goatcounter = { path: function(p) { return location.host + p } }
+</script>
+<script data-goatcounter="https://contraco.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
