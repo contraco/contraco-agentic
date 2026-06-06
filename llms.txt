@@ -1,0 +1,20 @@
+# Agentic Commerce — contraco
+
+> Research and frameworks for enterprise visibility in an economy where AI agents are the buyers. By Frank Meltke of contraco.
+
+agentic.contraco.net is contraco's research hub for agentic commerce: the shift from human-driven purchasing to autonomous AI agent-driven transactions at the API layer.
+
+## Key Pages
+
+- [Agentic Exposure Audit](https://agentic.contraco.net/)
+- [How Agents Pay](https://agentic.contraco.net/how-agents-pay.html)
+- [West vs East](https://agentic.contraco.net/west-vs-east.html)
+- [Value Capture](https://agentic.contraco.net/value-capture.html)
+
+## About
+
+contraco is a premium transformation consultancy founded in 1998 by Frank Meltke. The Agentic Exposure Audit is contraco's diagnostic tool for enterprise readiness in agentic commerce.
+
+- [contraco.net](https://contraco.net)
+- [Frank Meltke](https://meltke.com)
+- [Practitioner Notes](https://signal.meltke.com)
