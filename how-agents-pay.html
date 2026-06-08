@@ -1050,6 +1050,44 @@
 
                         <p>This gap will close. The direction of travel in European financial regulation is unambiguously toward explicit frameworks for algorithmic consent and agent-executed financial commitments. Enterprises that treat wallet provisioning governance as a technical footnote rather than a primary compliance discipline are accumulating regulatory exposure that will become material when those frameworks arrive.</p>
 
+                        <h2>The Undo Architecture: Autonomous Dispute Resolution</h2>
+
+                        <p>The programmable wallet model solves the authorization problem by reducing the PSP to a deterministic pipe. The PSP executes valid math and holds zero liability. But if the PSP is no longer the arbiter of fraud or fulfillment, who arbitrates the reversal?</p>
+
+                        <p>Physical supply chains break. B2B software SLAs are violated. Goods arrive defective. In the human-friction model, the buyer initiates a chargeback and the payment network acts as the judicial layer. In an agentic transaction, the cryptographic handshake is final. The PSP cleared valid math. There is no behavioral anomaly to adjudicate. The existing chargeback infrastructure has no intake mechanism for a dispute where both the buyer identity and the transaction authorization were cryptographically correct, but the underlying commercial obligation was not fulfilled.</p>
+
+                        <p>Autonomous commerce requires autonomous arbitration. If a buyer agent detects that a cloud vendor missed its SLA by 4 percent, it must have the architectural authority to execute a proportional cryptographic clawback without routing the dispute to a human customer service queue. The clawback itself must be a first-class primitive in the payment architecture, not a manual exception process bolted onto an otherwise automated system.</p>
+
+                        <div class="callout">
+                            <p>The ACP standardizes the handshake but remains largely silent on the reversal. Until a standardized Return Protocol is established, early adopters of delegated execution are building a one-way financial valve: the spend is automated, but the refund is still human.</p>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>SLA Breach Detection</h4>
+                                <p>The buyer agent continuously monitors fulfillment against the commercial parameters embedded in the original transaction token. Delivery window, product specification, service availability metric. When a measurable breach is detected, the agent requires a protocol path to initiate dispute resolution without escalating to a human queue.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Proportional Clawback Authorization</h4>
+                                <p>The clawback amount must derive from the breach magnitude, not from a human negotiation. A 4 percent SLA miss should trigger a pre-agreed proportional credit, not a support ticket. This requires that the original transaction token encode not just spending parameters but also the dispute resolution formula. The wallet provisioning governance layer must define both the spend boundary and the return boundary at the time of mandate issuance.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Cryptographic Reversal</h4>
+                                <p>The reversal must be as cryptographically rigorous as the original authorization. A merchant agent must be able to validate a clawback token against the same credential infrastructure used to validate the purchase. Accepted reversal tokens settle through the same execution rail in reverse. Contested reversals escalate to a defined arbitration layer, which may be smart-contract-based or institutional, but must be specified in the original mandate architecture rather than discovered at the moment of dispute.</p>
+                            </div>
+                        </div>
+
+                        <p>The enterprise governance implication is direct: wallet provisioning discipline must extend beyond spend parameters to include explicit return protocols. The mandate that authorizes the agent to buy must also specify under what conditions the agent is authorized to claw back, and through what mechanism. Enterprises that deploy delegated execution without a defined Return Protocol are not only exposed to fulfillment risk. They are exposed to the operational cost of manually processing disputes on a transaction volume their human teams were never resourced to handle.</p>
+
                     </article>
 
                     <!-- ===== SIDEBAR ===== -->
@@ -1067,6 +1105,7 @@
                                 <li><a href="#the-gap">The Open Protocol</a></li>
                                 <li><a href="#the-gap">Where Liability Sits</a></li>
                                 <li><a href="#the-gap">Regulatory Pressure</a></li>
+                                <li><a href="#the-gap">The Undo Architecture</a></li>
                             </ul>
                         </div>
 
@@ -1202,6 +1241,6 @@
   window.goatcounter = { path: function(p) { return location.host + p } }
 </script>
 <script data-goatcounter="https://contraco.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

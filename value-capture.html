@@ -569,6 +569,22 @@
 
                         <p>Generative Experience Optimization is the emerging discipline of structuring merchant data specifically for AI discovery engine prioritization. It is not a refinement of SEO. It is a separate capability built on different technical foundations and serving a different type of buyer. Merchants whose product data is not structured for machine consumption are structurally invisible to autonomous agents operating on the intent layer platforms. The share of voice metric introduced by Google in Merchant Center in May 2026 for AI surfaces is the first commercially visible measurement of this exposure. Departments currently holding no visibility into AI surface performance are now accountable for outcomes in a buyer channel they cannot see.</p>
 
+                        <h2>The Adversarial Data Layer: When GXO Is Weaponized</h2>
+
+                        <p>The analysis above assumes that the structured data an agent consumes from a merchant feed is an accurate representation of commercial reality. This assumption is the most exploitable gap in the current agentic architecture.</p>
+
+                        <p>The negotiation phase of agentic commerce is probabilistic, driven by LLMs evaluating machine-readable data feeds to make purchasing decisions on behalf of a principal. The same property that makes this architecture powerful makes it vulnerable: the agent reasons over inbound data before it acts. A hostile merchant or a compromised B2B vendor does not need to hack the buyer's wallet or intercept the cryptographic handshake. They only need to poison the data feed the buyer's agent consumes before the reasoning begins.</p>
+
+                        <p>By embedding adversarial instructions into a standard JSON product description, a malicious actor can instruct the parsing LLM to ignore the buyer's comparative pricing constraints, hallucinate a mandatory compliance requirement that only their product satisfies, or suppress the consideration of competing vendors entirely. If the agent generates a cryptographically valid token based on that manipulated reasoning, the transaction is technically flawless. The PSP will clear it. The enterprise holds the liability for a purchase its own governance parameters would never have authorized.</p>
+
+                        <div class="callout">
+                            <p>The PSP executes valid math. The wallet's cryptographic parameters were not violated. The transaction is architecturally correct and commercially wrong. The exploit happened upstream of every security layer the enterprise has.</p>
+                        </div>
+
+                        <p>This is not a theoretical threat vector. It is the direct consequence of deploying probabilistic reasoning systems against adversarially optimized data environments. Every SEO practitioner already understands the incentive to manipulate how their data is parsed by automated systems. GXO shifts that manipulation target from a human reading search results to an LLM reasoning over structured feeds, and the stakes are an executed purchase rather than a click.</p>
+
+                        <p>Defending against adversarial GXO requires an Adversarial Sanitation Layer inserted between the merchant data feed and the buyer agent's reasoning process. This layer must do three things that current enterprise architectures do not perform by default: verify that inbound structured data conforms to the schema the agent was designed to consume, detect anomalous instruction-like content embedded in data fields, and sandbox the reasoning process so that inbound merchant data cannot modify the agent's evaluation criteria or suppress its comparison parameters. Without this layer, the Data Layer that was supposed to deliver competitive pricing precision becomes the attack surface through which that precision is subverted.</p>
+
                         <h2>The Governance Layer: Where the B2B Value Concentrates</h2>
 
                         <p>The fourth value layer is the one most directly relevant to enterprise risk management and least represented in current technology vendor positioning. As established in the liability analysis of agentic payment architecture, the governance burden in autonomous commerce sits with the enterprise that provisions the wallet and defines the agent's operating parameters. This is not a temporary condition pending regulatory clarification. It is the structural consequence of moving commercial authorization from synchronous human confirmation to pre-authorized algorithmic mandate.</p>
@@ -602,6 +618,7 @@
                                 <li><a href="#the-stack">The Intent Layer</a></li>
                                 <li><a href="#the-stack">The Verification Layer</a></li>
                                 <li><a href="#the-stack">The Data Layer: GXO</a></li>
+                                <li><a href="#the-stack">Adversarial GXO</a></li>
                                 <li><a href="#the-stack">The Governance Layer</a></li>
                                 <li><a href="#the-stack">Enterprise Position</a></li>
                             </ul>
@@ -739,6 +756,6 @@
   window.goatcounter = { path: function(p) { return location.host + p } }
 </script>
 <script data-goatcounter="https://contraco.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
