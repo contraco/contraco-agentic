@@ -31,18 +31,24 @@ jobs:
           set -euo pipefail
 
           # Collect changed files — with fallback for initial commit (no HEAD~1)
+          BEFORE="${{ github.event.before }}"
+          if git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            BASE="$BEFORE"
+          else
+            BASE="HEAD~1"
+          fi
+
           if git rev-parse HEAD~1 > /dev/null 2>&1; then
-            git diff --name-status -M HEAD~1 HEAD \
+            git diff --name-status -M "${BASE}" HEAD \
             | awk '
               BEGIN { IGNORECASE=1 }
               $1 ~ /^(A|M)$/ && $2 ~ /\.(html|htm)$/ {print $2}
               $1 ~ /^R/        && $3 ~ /\.(html|htm)$/ {print $3}
             ' > changed_paths.txt || true
 
-            git diff --name-only HEAD~1 HEAD \
+            git diff --name-only "${BASE}" HEAD \
             | grep -Ei '\.(html|htm)$' >> changed_paths.txt || true
           else
-            # Initial commit: list all files in this commit
             git diff-tree --no-commit-id -r --name-only HEAD \
             | grep -Ei '\.(html|htm)$' > changed_paths.txt || true
           fi
