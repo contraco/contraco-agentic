@@ -22,4 +22,9 @@ contraco is a premium transformation consultancy founded in 1998 by Frank Meltke
 ## Pages
 
 <!-- AUTO-PAGES:START -->
+- [How Autonomous Agents Execute Payments](https://agentic.contraco.net/how-agents-pay.html)
+- [The Agentic Exposure Audit](https://agentic.contraco.net/)
+- [A Price Cap Is Not an Amount](https://agentic.contraco.net/price-cap-not-an-amount.html)
+- [Who Captures Value When the Payment Pipe Is Free](https://agentic.contraco.net/value-capture.html)
+- [Alipay vs. Western Fragmentation: Why Agentic Commerce Scaled in Asia First](https://agentic.contraco.net/west-vs-east.html)
 <!-- AUTO-PAGES:END -->
