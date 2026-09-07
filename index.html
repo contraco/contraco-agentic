@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-868WGCC45D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-868WGCC45D', {
-            page_title: 'The Agentic Exposure Audit - contraco',
-            page_location: window.location.href
-        });
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Agentic Exposure Audit | Frank Meltke | contraco</title>
@@ -115,7 +103,7 @@
           "url": "https://agentic.contraco.net/",
           "name": "The Agentic Exposure Audit | contraco",
           "description": "Securing Enterprise Architecture for the Autonomous Economy. We conduct surgical architectural audits for technical leadership to analyze API readiness against algorithmic arbitrage.",
-          "dateModified": "2026-08-31"
+          "dateModified": "2026-09-07"
         },
         {
           "@type": "Person",
@@ -1422,7 +1410,7 @@
                         <p class="audit-mandate">We operate strictly on a principle of high signal efficiency and deep strategic focus. Entry requires demonstrating architectural baseline awareness. The three questions in the audit request form are not screening questions. They are the first diagnostic instrument.</p>
                     </div>
                     <div id="request-audit">
-                        <form class="audit-form" action="https://formsubmit.co/agentic@contraco.net" method="POST">
+                        <form class="audit-form" id="audit-form">
                             <input type="hidden" name="_subject" value="Agentic Exposure Audit Request">
                             <input type="hidden" name="_captcha" value="true">
                             <input type="hidden" name="_template" value="table">
@@ -1581,5 +1569,33 @@
 </script>
 <script data-goatcounter="https://contraco.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
+<script>
+(function () {
+    var form = document.getElementById('audit-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var honey = form.querySelector('[name="_honey"]');
+        if (honey && honey.value) return;
+        var parts = [];
+        var fields = form.querySelectorAll('input[name], textarea[name], select[name]');
+        for (var i = 0; i < fields.length; i++) {
+            var f = fields[i];
+            if (f.name.charAt(0) === '_') continue;
+            if (f.type === 'submit' || f.type === 'button') continue;
+            if (!f.value) continue;
+            var label = form.querySelector('label[for="' + f.id + '"]');
+            var ph = f.getAttribute('placeholder');
+            var name = label ? label.textContent.replace('*', '').trim() : (ph && ph.length <= 30 ? ph : f.name);
+            parts.push(name + ': ' + f.value);
+        }
+        var body = parts.join('\n\n');
+        if (body.length > 1500) body = body.slice(0, 1500);
+        window.location.href = 'mailto:agentic@contraco.net'
+            + '?subject=' + encodeURIComponent('Agentic Exposure Audit enquiry')
+            + '&body=' + encodeURIComponent(body);
+    });
+})();
+</script>
 </body>
 </html>
