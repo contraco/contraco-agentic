@@ -826,7 +826,7 @@
     "@type": "WebPage",
     "url": "https://agentic.contraco.net/how-agents-pay.html",
     "name": "How Autonomous Agents Execute Payments | Frank Meltke | contraco",
-    "dateModified": "2026-10-24",
+    "dateModified": "2026-11-14",
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://agentic.contraco.net/#website",
@@ -922,6 +922,49 @@
                         <div class="callout">
                             <p>The human gave approval at wallet provisioning time. The prior, deliberate act of setting the perimeters constitutes the authorization for all transactions that fall within them. This is the mechanism by which 3D Secure is bypassed without bypassing authorization.</p>
                         </div>
+
+                        <h2>Three Approval Models, East and West</h2>
+
+                        <p><em>Added November 2026.</em></p>
+
+                        <p>The programmable wallet described above is one way to keep a human in an agentic payment. The human approves once, when the wallet is provisioned, and the agent spends within the perimeters set at that moment. Since this paper was first published in June 2026, the market has put two further models into live use, and each of them now runs in Asia as well as in the West.</p>
+
+                        <table class="compare-table">
+                            <thead>
+                                <tr>
+                                    <th>Approval model</th>
+                                    <th>Asia</th>
+                                    <th>West</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>The agent prepares, the customer pays in the normal checkout</td>
+                                    <td>The WeChat assistant, in test since June 2026, takes the customer to the payment page and stops there</td>
+                                    <td>ChatGPT from March 2026, when OpenAI ended its in-chat checkout and sent the customer to the merchant's own checkout</td>
+                                </tr>
+                                <tr>
+                                    <td>The customer approves every payment, by face, fingerprint or PIN</td>
+                                    <td>Alipay AI Pay, in the Qwen App since January 2026. Across all its channels, AI Pay processed more than 120 million transactions in the week of 5 to 11 February 2026</td>
+                                    <td>Meta's agent Muse in the US since 8 September 2026, paying with a single-use Stripe Link card tied to one merchant and one amount. ChatGPT Wallet since 13 November 2026, initially for ChatGPT Pro subscribers in the US, paying with a network token from American Express, Mastercard or Visa after a biometric check. A flight purchase by Travelport, Booked AI, Basis Theory and Mastercard on 12 November 2026, with the approval linked to the transaction through Mastercard Verifiable Intent</td>
+                                </tr>
+                                <tr>
+                                    <td>The customer approves once in advance, and the agent pays without asking again</td>
+                                    <td>Razorpay and NPCI on Claude in India, a pilot since February 2026, with one spending limit per merchant and no PIN within it. Alipay has described a delegated mode with a time window, an amount cap and a merchant scope, which has not been shown live</td>
+                                    <td>A contraco test purchase with a US travel agent in September 2026, in which one instruction produced a booked and paid flight and hotel without a further click. Also the programmable wallet described in this paper, and the delegated purchasing that OpenAI lists as a future step for ChatGPT Wallet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Asia was first. Alipay launched its Agentic Commerce Trust Protocol with the Qwen App in January 2026, eight months before Meta's Muse and ten months before ChatGPT Wallet, and the Qwen App has issued China Eastern tickets, chosen seats and checked passengers in since April 2026. The Western launches of autumn 2026 adopt a pattern that already ran at scale in China.</p>
+
+                        <p>The difference lies in who holds the chain. Alipay holds the agent, the inventory, the wallet and the identity inside one group, which is the structure described in <a href="https://agentic.contraco.net/west-vs-east.html">Alipay vs. Western Fragmentation</a>. In the West no one holds it whole. Muse relies on Stripe's wallet and on the merchants that let it in, and some large ones keep it out. ChatGPT Wallet relies on three card networks. In both cases the merchant remains the seller. India takes a third route, in which the national payment network provides the limit and the consent mechanism, UPI Reserve Pay, on which the agent pays.</p>
+
+                        <div class="callout">
+                            <p>An approval at the moment of payment proves that the customer accepted this amount and this payee. It settles a dispute about fraud. It does not prove that the agent chose the right flight, the right date or the right fare conditions, and that is where the next disputes will arise. The approval protects the payment. It does not verify the agent.</p>
+                        </div>
+
+                        <p>The third model is where this paper started, and it is still the least tested. In India the customer still confirms each order but no longer authenticates it. Alipay has not shown its delegated mode in live use, and OpenAI names it as a future step. The one fully delegated purchase on record in this comparison is contraco's own test. Every region is moving towards it, and none has yet shown how a dispute is resolved inside it. That is the question taken up below in The Undo Architecture.</p>
 
                         <h2>The Critical Inversion: The PSP Is Not the Problem</h2>
 
@@ -1100,6 +1143,7 @@
                                 <li><a href="#the-gap">The Legacy Rail Problem</a></li>
                                 <li><a href="#the-gap">Negotiation vs. Execution</a></li>
                                 <li><a href="#the-gap">Algorithmic Consent</a></li>
+                                <li><a href="#the-gap">Three Approval Models</a></li>
                                 <li><a href="#the-gap">The PSP Inversion</a></li>
                                 <li><a href="#the-gap">KYC to KYA</a></li>
                                 <li><a href="#the-gap">PKI for Commerce</a></li>
